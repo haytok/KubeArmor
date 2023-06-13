@@ -74,7 +74,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  go-tests:
+  go-test:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -84,6 +84,5 @@ jobs:
           go-version: "v1.20"
 
       - name: Run Revive Action on KubeArmor/KubeArmor tests
-        uses: morphy2k/revive-action@v2
-        with:
-          path: "./KubeArmor/..."
+        run: go test ./...
+        working-directory: KubeArmor
