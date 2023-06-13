@@ -2,7 +2,9 @@ name: ci-test-go
 
 on:
   push:
-    branches: [main]
+    branches:
+      - "main"
+      - "haytok-fix-to-run-golang-tests-on-ci"
   pull_request:
     branches: [main]
   workflow_dispatch:
