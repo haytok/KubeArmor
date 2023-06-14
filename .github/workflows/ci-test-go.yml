@@ -64,16 +64,6 @@ jobs:
         run: make gosec
         working-directory: KubeArmor
 
-  license:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Check License Header
-        uses: apache/skywalking-eyes@9bd5feb86b5817aa6072b008f9866a2c3bbc8587
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   go-test:
     runs-on: ubuntu-20.04
     steps:
@@ -83,6 +73,16 @@ jobs:
         with:
           go-version: "v1.20"
 
-      - name: Run Revive Action on KubeArmor/KubeArmor tests
+      - name: Run go test on the KubeArmor/KubeArmor directory
         run: go test ./...
         working-directory: KubeArmor
+
+  license:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check License Header
+        uses: apache/skywalking-eyes@9bd5feb86b5817aa6072b008f9866a2c3bbc8587
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
